@@ -34,6 +34,25 @@ train = df.iloc[:train_size]
 
 test = df.iloc[train_size:]
 
-print("Train Shape:", train.shape)
+# print("Train Shape:", train.shape)
 
-print("Test Shape:", test.shape)
+# print("Test Shape:", test.shape)
+
+categorical_cols = [
+    'restaurant_type',
+    'menu_item_name',
+    'meal_type',
+    'weather_condition'
+]
+
+df = pd.get_dummies(df, columns=categorical_cols)
+
+# print(df.head())
+
+y = df['quantity_sold']
+
+X = df.drop(['quantity_sold', 'date', 'key_ingredients_tags'], axis=1)
+
+print("Feature Shape:", X.shape)
+
+print("Target Shape:", y.shape)
