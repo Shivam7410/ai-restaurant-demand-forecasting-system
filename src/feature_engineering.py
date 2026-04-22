@@ -8,4 +8,32 @@ df['day_of_week'] = df['date'].dt.dayofweek
 
 df['is_weekend'] = df['day_of_week'].apply(lambda x: 1 if x >= 5 else 0)
 
-print(df[['date', 'day_of_week', 'is_weekend']].head())
+# print(df[['date', 'day_of_week', 'is_weekend']].head())
+
+df = df.sort_values('date')
+
+df['lag_1'] = df['quantity_sold'].shift(1)
+
+df['lag_7'] = df['quantity_sold'].shift(7)
+
+# print(df[['date', 'quantity_sold', 'lag_1', 'lag_7']].head(10))
+
+df['rolling_mean_7'] = df['quantity_sold'].rolling(window=7).mean()
+
+# print(df[['quantity_sold', 'rolling_mean_7']].head(10))
+
+df = df.dropna()
+
+# print(df.shape)
+
+# print(df.head())
+
+train_size = int(len(df)*0.8)
+
+train = df.iloc[:train_size]
+
+test = df.iloc[train_size:]
+
+print("Train Shape:", train.shape)
+
+print("Test Shape:", test.shape)
