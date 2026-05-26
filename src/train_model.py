@@ -64,6 +64,8 @@ print("MAE:", mae)
 
 print("RMSE:", rmse)
 
+# Visualization
+
 plt.figure(figsize=(10,5))
 
 plt.plot(y_test.values[:100], label='Actual Sales')
@@ -79,3 +81,12 @@ plt.ylabel('Quantity Sold')
 plt.legend()
 
 plt.show()
+
+# Feature Importance
+
+importance = model.feature_importances_
+
+feature_names = X.columns
+
+for feature, score in zip(feature_names, importance):
+    print(feature, ":", score)
