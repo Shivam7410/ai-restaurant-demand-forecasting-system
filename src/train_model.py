@@ -1,5 +1,5 @@
 import pandas as pd
-
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 
@@ -60,3 +60,19 @@ print("Improved Model Results")
 print("MAE:", mae)
 
 print("RMSE:", rmse)
+
+plt.figure(figsize=(10,5))
+
+plt.plot(y_test.values[:100], label='Actual Sales')
+
+plt.plot(predictions[:100], label='Predicted Sales')
+
+plt.title('Actual vs Predicted Sales')
+
+plt.xlabel('Samples')
+
+plt.ylabel('Quantity Sold')
+
+plt.legend()
+
+plt.show()
