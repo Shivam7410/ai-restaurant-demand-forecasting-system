@@ -1,8 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+
+
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
+
+import joblib
 
 df = pd.read_csv('data/restaurant_sales_data.csv')
 
@@ -90,3 +94,10 @@ feature_names = X.columns
 
 for feature, score in zip(feature_names, importance):
     print(feature, ":", score)
+
+joblib.dump(
+    model,
+    'restaurant_demand_model.pkl'
+)
+
+print("\nModel saved successfully!")
